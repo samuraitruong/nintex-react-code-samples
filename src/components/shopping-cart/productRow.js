@@ -23,7 +23,6 @@ export class ProductRow extends Component {
     }
     render() {
         const {product} = this.state;
-        console.log("product", product);
         return (
             <tr>
                 <td>{product.id}</td>

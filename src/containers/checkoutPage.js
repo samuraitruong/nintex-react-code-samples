@@ -11,6 +11,7 @@ import {
 import {ProductTable} from '../components';
 import {ShoppingCartService, HttpService} from '../services';
 import {round} from '../utils';
+import '../styles/checkoutPage.scss';
 
 export class CheckoutPage extends Component {
     constructor(props) {
@@ -43,7 +44,6 @@ export class CheckoutPage extends Component {
         }
     }
     onQuantityUpdate(product) {
-        console.log("new product", product);
         const cartItems = [...this.state.cartItems];
         const match = cartItems.find(x => x.id === product.id);
         match.quantity = product.quantity;
@@ -60,19 +60,24 @@ export class CheckoutPage extends Component {
         const summary = await this
             .cart
             .calculateOrder(cartItems, discountCode);
-        console.log("summary", summary);
         this.setState({
             summary,
             checkedDiscount: discountCode !== ''
         });
     }
+    renderPriceItem(label, price) {
+        return (
+            <div className="checkoutPage__checkout__price">{label}
+                <span className="checkoutPage__checkout__price__value">${round(price)}</span>
+            </div>
+        )
+    }
     render() {
         const {summary, checkedDiscount} = this.state;
-        console.log("checkedDiscount", checkedDiscount)
         return (
             <Container>
                 <Row>
-                    <Col xs="9">
+                    <Col xs="8">
                         <h3>Nintext offers product</h3>
                         <ProductTable
                             products={this.state.cartItems}
@@ -80,39 +85,26 @@ export class CheckoutPage extends Component {
                             .onQuantityUpdate
                             .bind(this)}></ProductTable>
                     </Col>
-                    <Col xs="3" className="pt-3">
-                        <h3>CHECKOUT</h3>
-                        <ListGroup>
-                            <ListGroup.Item>Order Total: ${round(summary.total)}</ListGroup.Item>
-                            {summary.discount
-                                ? (
-                                    <ListGroup.Item variant="info">Discount Total: ${round(summary.discountPrice, 2)}
+                    <Col xs="4" className="pt-3 pb-5 checkoutPage__checkout">
+                        <h3 className="text-center">Process Checkout</h3>
+                        {this.renderPriceItem('Price', summary.total)}
+                        {summary.discountPrice > 0 && this.renderPriceItem('Discount', summary.discountPrice)}
+                        {summary.discountPrice > 0 && this.renderPriceItem('Total', summary.total - summary.discountPrice)}
 
-                                    </ListGroup.Item>
-                                )
-                                : null}
-                            {(checkedDiscount && !summary.discount)
-                                ? (
-                                    <div className="alert alert-danger mt-3">
-                                        Discount code is invalid
-                                    </div>
-                                )
-                                : null}
-                        </ListGroup>
-                        {summary.discount
-                            ? <div className="alert alert-success mt-2">{summary.discount.description}</div>
-                            : null}
-                        <div className="mt-5">Do you have discount code?</div>
+                        {summary.discount && <div className="alert bg-success mt-2">{summary.discount.description}</div>}
 
+                        <div className="mt-5">
+                            Do you have discount code ?
+                        </div>
                         <InputGroup className="mb-3 mt-1">
-
                             <FormControl
                                 placeholder="Discount Code"
                                 aria-label="Discount Code"
                                 value={this.state.discountCode}
                                 onChange=
-                                {(e) => this.setState({discountCode:e.target.value})}
+                                {(e) => this.setState({ discountCode: e.target.value })}
                                 aria-describedby="basic-addon2"/>
+
                             <InputGroup.Append>
                                 <Button
                                     variant="primary"
@@ -122,6 +114,13 @@ export class CheckoutPage extends Component {
                                     .bind(this)}>Apply</Button>
                             </InputGroup.Append>
                         </InputGroup>
+
+                        {checkedDiscount && !summary.discount && (
+                            <div className="alert bg-danger mt-3">
+                                Invalid code or expired
+                            </div>
+                        )}
+
                         <Button variant="success" onClick={() => console.log("aaaa")}>Process</Button>
 
                     </Col>
@@ -131,5 +130,3 @@ export class CheckoutPage extends Component {
         )
     }
 }
-
-export default CheckoutPage

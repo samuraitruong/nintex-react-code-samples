@@ -23,7 +23,6 @@ export class ShoppingCartService {
         };
 
         const rule = getDiscountRule(this.discount);
-        console.log("discount rule apply", products, rule);
         const {totalOrder, discountAmount} = rule.calculateDiscount(products);
         summary.total = totalOrder;
         summary.discountPrice = discountAmount;

@@ -1,0 +1,18 @@
+@import './constants';
+.checkoutPage{
+    &__checkout {
+        background: $dark_blue_color;
+        color: #fff;
+        &h3{
+            text-align: center;
+        }
+        &__price{
+            font-size: $size-large;
+            text-transform: uppercase;
+            border-bottom: $dark_silver_color 1px dashed;
+            &__value {
+                float: right;
+            }
+        }
+    }
+}
