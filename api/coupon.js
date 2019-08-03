@@ -16,15 +16,17 @@ module.exports = function (req, res) {
             code: 'FF9543D1',
             description: 'Reduces the docgen price to $8.99 a unit when at least 10 documents are purchase' +
                     'd',
-            priceDiscount: 10,
+            priceDiscount: 1,
             appyProductId: 'docgen',
             applyQuantity: 10
         }, {
             code: 'YYGWKJD',
             description: 'Reduces the form price to $89.99 a unit when at least 1 wf is purchased',
             priceDiscount: 10,
-            appyProductId: 'wf',
-            applyQuantity: 1
+            appyProductId: 'form',
+            applyQuantity: 1,
+            relatedProductIds: ["wf"]
+
         }
     ].find(x => x.code === code);
 
