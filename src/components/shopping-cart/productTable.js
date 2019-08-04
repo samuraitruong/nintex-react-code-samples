@@ -5,7 +5,9 @@ import {ProductRow} from './productRow';
 export class ProductTable extends Component {
 
     render() {
-        const {products} = this.props;
+        const {
+            products = []
+        } = this.props;
         return (
             <Table striped bordered hover>
                 <thead>

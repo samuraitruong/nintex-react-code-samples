@@ -66,9 +66,13 @@ export class CheckoutPage extends Component {
         });
     }
     renderPriceItem(label, price) {
+        const id = "priceItem_" + label
+            .toLowerCase()
+            .replace(/\s/i, '_');
+
         return (
             <div className="checkoutPage__checkout__price">{label}
-                <span className="checkoutPage__checkout__price__value">${round(price)}</span>
+                <span className="checkoutPage__checkout__price__value" id={id}>${round(price)}</span>
             </div>
         )
     }
@@ -98,6 +102,7 @@ export class CheckoutPage extends Component {
                         </div>
                         <InputGroup className="mb-3 mt-1">
                             <FormControl
+                                id="discountCodeInput"
                                 placeholder="Discount Code"
                                 aria-label="Discount Code"
                                 value={this.state.discountCode}
@@ -107,6 +112,7 @@ export class CheckoutPage extends Component {
 
                             <InputGroup.Append>
                                 <Button
+                                    id="discountBtn"
                                     variant="primary"
                                     primary="true"
                                     onClick={this

@@ -25,12 +25,13 @@ export class ProductRow extends Component {
         const {product} = this.state;
         return product
             ? (
-                <tr>
+                <tr className="productRow">
                     <td>{product.id}</td>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>
                         <Form.Control
+                            className="quantity"
                             size="sm"
                             type="text"
                             placeholder="Quantity"
@@ -39,7 +40,9 @@ export class ProductRow extends Component {
                             onChange={this
                             .handleQuantityChange
                             .bind(this)}/></td>
-                    <td>${round(product.price * product.quantity, 2)}</td>
+                    <td>
+                        <span className="price">${round(product.price * product.quantity, 2)}</span>
+                    </td>
                 </tr>
 
             )
