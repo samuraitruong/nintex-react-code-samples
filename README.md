@@ -1,68 +1,96 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+### Start local development
+Below command will start mock backend on port 8000 and also start react application on default port 3000
 
-In the project directory, you can run:
+```sh
+    yarn dev
+    or npm run dev
+```
+Note: Mocked API backend default running on port 8000, if you local machine has that port being use, you should change that port in /api/index.js before run above command.
 
-### `npm start`
+### Build 
+Run below command to build 
+```sh
+    REACT_APP_API_ROOT=http://env && yarn build
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+REACT_APP_API_ROOT is the backend URL for application
+for example
+``` sh
+REACT_APP_API_ROOT=http://test:5000 ^&& yarn build 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+or REACT_APP_API_ROOT=http://test:5000 ^&& npm build 
 
-### `npm test`
+```
+## Structure
+### Mocked backend APi
+mocked backend with static response using express server
+- /api/product -> return list of 3 product with below format
+```json
+GET 200
+    [
+  {
+    "id": "wf",
+    "name": "Workflow",
+    "price": 199.99
+  },
+  {
+    "id": "docgen",
+    "name": "Document Generation",
+    "price": 9.99
+  },
+  {
+    "id": "form",
+    "name": "Form",
+    "price": 99.99
+  }
+]
+```
+- /api/coupon/{code} return the promotion code details.
+```json
+GET 200
+ {
+  "code": "RRD4D32",
+  "description": "10% discount for orders above $1000 (pre-discount)",
+  "percentDiscount": 10,
+  "applyDiscountAmount": 1000
+ }
+}
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
 
-### `npm run build`
+### Front-end app
+Frontend app is react application is create with create-react-app and configure with scss
+below are library being use in project
+- bootstra4
+- react-boostrap (not really need in this sample but I just use it )
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Components**
+Are dump componenet which don't need to know anything about logic, data load, they only do render GUI depend on data passed to them
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+**Containers**
+Are smart component which responsible to get data/ process data then pass to dump component. In real project I prefer to use Redux + Saga control the app state.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Service**
 
-### `npm run eject`
+Container the core service to calculate the discount.  There 3 rules were implemented as separate class and fully unit test, one factory method will return the instance of discount rule and then shopping cart service will calculate using the rule.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Styles**
+As project using bootstrap so not much custom styles that were introduced. there are some style under /src/styles to demo my skill, actually, they are just very little. Please note I using BEM rules to naming class name if you not familiar with it please read more at - https://en.bem.info/methodology/naming-convention/
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Tests**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Project has implement using TTD, every service class has fully unitested. most of UI feature has unit test using Enzema & Jest there maybe need couple of edge case unit test but I think to it is more than enougth for evaluation my skills. I can using other unit test framework such as Mocha/chai/Sinon/Jasmine... 
 
-## Learn More
+## Limitation & Improvement
+- Sometime the development server is not ready so data is not loaded at first time, you can refresh page and everything will works like a charm
+- Need to add error handling on UI when loading data error
+- Configure dotenv or similar to inject the API root automatically from build environment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
