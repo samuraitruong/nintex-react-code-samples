@@ -117,4 +117,55 @@ describe('checkoutPage render tests', () => {
 
     })
 
+    it('Should calculate discount when valid discount code provide', async() => {
+        mock = mockAxios
+            .get
+            .mockImplementationOnce(() => Promise.resolve({data: products}));
+
+        const element = await mount(<CheckoutPage/>);
+        await flushPromises();
+        element.update();
+
+        expect(element.contains('Invalid code or expired')).toEqual(false);
+        const quantity = element
+            .find(".quantity")
+            .hostNodes();
+
+        quantity
+            .at(0)
+            .simulate('change', {
+                target: {
+                    value: '15'
+                }
+            });
+        await flushPromises();
+
+        expect(element.find("#priceItem_price").text()).toEqual("$999.95");
+
+        mock.mockRestore();
+        mock = mockAxios
+            .get
+            .mockImplementationOnce(() => Promise.reject({statusCode: 400, data: "No code found"}));
+
+        // enter invalid code and submit
+        element
+            .find("#discountCodeInput")
+            .hostNodes()
+            .simulate("change", {
+                target: {
+                    value: "invalid"
+                }
+            });
+
+        element
+            .find("#discountBtn")
+            .hostNodes()
+            .simulate("click");
+
+        await flushPromises();
+        element.update();
+        expect(element.contains('Invalid code or expired')).toEqual(true);
+
+    })
+
 });
