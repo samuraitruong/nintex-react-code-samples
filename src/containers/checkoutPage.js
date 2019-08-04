@@ -5,8 +5,7 @@ import {
     Col,
     InputGroup,
     Button,
-    FormControl,
-    ListGroup
+    FormControl
 } from 'react-bootstrap';
 import {ProductTable} from '../components';
 import {ShoppingCartService, HttpService} from '../services';

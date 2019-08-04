@@ -140,12 +140,19 @@ describe('checkoutPage render tests', () => {
             });
         await flushPromises();
 
-        expect(element.find("#priceItem_price").text()).toEqual("$999.95");
+        expect(element.find("#priceItem_price").text()).toEqual("$2999.86");
 
         mock.mockRestore();
         mock = mockAxios
             .get
-            .mockImplementationOnce(() => Promise.reject({statusCode: 400, data: "No code found"}));
+            .mockImplementationOnce(() => Promise.resolve({
+                data: {
+                    code: '44F4T11',
+                    description: '15% discount for orders above $1500 (pre-discount)',
+                    percentDiscount: 15,
+                    applyDiscountAmount: 1500
+                }
+            }));
 
         // enter invalid code and submit
         element
@@ -153,7 +160,7 @@ describe('checkoutPage render tests', () => {
             .hostNodes()
             .simulate("change", {
                 target: {
-                    value: "invalid"
+                    value: "44F4T11"
                 }
             });
 
@@ -164,8 +171,11 @@ describe('checkoutPage render tests', () => {
 
         await flushPromises();
         element.update();
-        expect(element.contains('Invalid code or expired')).toEqual(true);
 
+        expect(element.find("#priceItem_discount").hostNodes().length).toEqual(1);
+        expect(element.find("#priceItem_price").text()).toEqual('$2999.86');
+        expect(element.find("#priceItem_discount").text()).toEqual('$449.98');
+        expect(element.find("#priceItem_total").text()).toEqual('$2549.88');
+        expect(element.contains('15% discount for orders above $1500 (pre-discount)')).toEqual(true);
     })
-
 });
