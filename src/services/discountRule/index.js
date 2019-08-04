@@ -3,17 +3,17 @@
  * @param {*} discount
  * @returns {*} return the discount rule
  */
-import {AmountDiscountRule} from './totalAmountDiscount';
+import {OrderAmountDiscount} from './orderAmountDiscount';
 import {ProductQuantityDiscount} from './productQuantityDiscount';
-import {NoDiscountRule} from './noDiscount';
+import {NoDiscount} from './noDiscount';
 
 export function getDiscountRule(discount) {
     const {applyDiscountAmount, percentDiscount, priceDiscount, appyProductId, applyQuantity} = discount || {};
     if (applyDiscountAmount && percentDiscount) {
-        return new AmountDiscountRule(discount);
+        return new OrderAmountDiscount(discount);
     }
     if (priceDiscount && appyProductId && applyQuantity) {
         return new ProductQuantityDiscount(discount);
     }
-    return new NoDiscountRule();
+    return new NoDiscount();
 }

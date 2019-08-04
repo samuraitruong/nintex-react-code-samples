@@ -23,24 +23,26 @@ export class ProductRow extends Component {
     }
     render() {
         const {product} = this.state;
-        return (
-            <tr>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>
-                    <Form.Control
-                        size="sm"
-                        type="text"
-                        placeholder="Quantity"
-                        defaultValue="0"
-                        value={product.value}
-                        onChange={this
-                        .handleQuantityChange
-                        .bind(this)}/></td>
-                <td>${round(product.price * product.quantity, 2)}</td>
-            </tr>
+        return product
+            ? (
+                <tr>
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>
+                        <Form.Control
+                            size="sm"
+                            type="text"
+                            placeholder="Quantity"
+                            defaultValue="0"
+                            value={product.value}
+                            onChange={this
+                            .handleQuantityChange
+                            .bind(this)}/></td>
+                    <td>${round(product.price * product.quantity, 2)}</td>
+                </tr>
 
-        )
+            )
+            : null
     }
 }

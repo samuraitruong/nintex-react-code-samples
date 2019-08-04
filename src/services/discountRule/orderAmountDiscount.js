@@ -1,4 +1,4 @@
-export class AmountDiscountRule {
+export class OrderAmountDiscount {
     constructor(discount) {
         this.discount = discount;
     }

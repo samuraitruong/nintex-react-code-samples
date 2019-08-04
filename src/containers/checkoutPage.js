@@ -75,10 +75,10 @@ export class CheckoutPage extends Component {
     render() {
         const {summary, checkedDiscount} = this.state;
         return (
-            <Container>
+            <Container className="checkoutPage">
                 <Row>
-                    <Col xs="8">
-                        <h3>Nintext offers product</h3>
+                    <Col xs="8" className="checkoutPage__products">
+                        <h3 className="checkoutPage__products__title mt-0 mb-0">Nintex cloud services</h3>
                         <ProductTable
                             products={this.state.cartItems}
                             onQuantityUpdate={this
@@ -121,7 +121,7 @@ export class CheckoutPage extends Component {
                             </div>
                         )}
 
-                        <Button variant="success" onClick={() => console.log("aaaa")}>Process</Button>
+                        <Button variant="success">Process</Button>
 
                     </Col>
                 </Row>

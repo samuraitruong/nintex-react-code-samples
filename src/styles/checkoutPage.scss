@@ -1,5 +1,12 @@
 @import './constants';
 .checkoutPage{
+    &__products{
+        &__title{
+            background: $dark_blue_color;
+            color: #fff;
+            padding: 15px 10px;
+        }
+    }
     &__checkout {
         background: $dark_blue_color;
         color: #fff;

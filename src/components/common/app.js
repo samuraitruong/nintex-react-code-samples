@@ -8,14 +8,12 @@ export function App() {
     return (
         <div className="container">
             <Router>
-
                 <Header></Header>
                 <div className="body pt-5">
                     <Route path="/" exact component={HomePage}/>
                     <Route path="/checkout/" component={CheckoutPage}/>
                 </div>
             </Router>
-
         </div>
     );
 }

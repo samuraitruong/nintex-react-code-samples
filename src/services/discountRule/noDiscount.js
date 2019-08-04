@@ -1,4 +1,4 @@
-export class NoDiscountRule {
+export class NoDiscount {
 
     /**
      *
