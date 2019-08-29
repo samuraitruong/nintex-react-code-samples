@@ -112,6 +112,7 @@ Nintex is re-designing their product system to give more flexibility to clients 
 Also, we currently have these promotion codes:
 
 |PROMO CODE|	DESCRIPTION|
+| :------------- | -----------: |
 |RRD4D32	|10% discount for orders above $1000 (pre-discount)|
 |44F4T11	|15% discount for orders above $1500 (pre-discount)|
 |FF9543D1	|Reduces the docgen price to $8.99 a unit when at least 10 documents are purchased|
