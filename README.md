@@ -89,8 +89,6 @@ Project has implement using TTD, every service class has fully unitested. most o
 - Sometime the development server is not ready so data is not loaded at first time, you can refresh page and everything will works like a charm
 - Need to add error handling on UI when loading data error
 - Configure dotenv or similar to inject the API root automatically from build environment
-
-
-
-
+- Some ESlint rules need update to fix all eslint error
+- Some of code styles are messup before I have conflict plugin in my vscode - sorry it that annoye you
 
