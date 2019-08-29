@@ -110,11 +110,11 @@ form|	Form|	$99.99
 
 Also, we currently have these promotion codes:
 
-PROMO CODE|	DESCRIPTION
-RRD4D32	|10% discount for orders above $1000 (pre-discount)
-44F4T11	|15% discount for orders above $1500 (pre-discount)
-FF9543D1	|Reduces the docgen price to $8.99 a unit when at least 10 documents are purchased
-YYGWKJD	|Reduces the form price to $89.99 a unit when at least 1 wf is purchased
+|PROMO CODE|	DESCRIPTION|
+|RRD4D32	|10% discount for orders above $1000 (pre-discount)|
+|44F4T11	|15% discount for orders above $1500 (pre-discount)|
+|FF9543D1	|Reduces the docgen price to $8.99 a unit when at least 10 documents are purchased|
+|YYGWKJD	|Reduces the form price to $89.99 a unit when at least 1 wf is purchased|
 
 For simplicity sake, only one promotion code can be applied at a time.
 
@@ -126,7 +126,8 @@ We would like you to implement a single checkout page, where you'll be able to s
 Since promotion codes come and go, we want the pricing rules to be as flexible as possible so that could be changed in the future with little notice.
 
 Outcomes examples:
- 	``` 
+
+``` 
 Products	2x wf
 Promotion:	 
 Total	$399.98
