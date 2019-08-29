@@ -97,35 +97,36 @@ Project has implement using TTD, every service class has fully unitested. most o
 ### Original Requirements
 This exercise is designed to assess your coding and problem-solving style. Since there is no right or wrong answer, we will primarily be looking into how you structure your proposed solution and how you approach the given problems.
 
-Business rules
+#### Business rules
 Nintex is re-designing their product system to give more flexibility to clients on which products to purchase. Following is a table of products we offer:
 
  
 
-PRODUCT ID	PRODUCT NAME	PRICE
-wf	Workflow	$199.99
-docgen	Document Generation	$9.99
-form	Form	$99.99
+|PRODUCT ID|	PRODUCT NAME|	PRICE
+wf|	Workflow	|$199.99
+docgen|	Document Generation	|$9.99
+form|	Form|	$99.99
  
 
 Also, we currently have these promotion codes:
 
-PROMO CODE	DESCRIPTION
-RRD4D32	10% discount for orders above $1000 (pre-discount)
-44F4T11	15% discount for orders above $1500 (pre-discount)
-FF9543D1	Reduces the docgen price to $8.99 a unit when at least 10 documents are purchased
-YYGWKJD	Reduces the form price to $89.99 a unit when at least 1 wf is purchased
+PROMO CODE|	DESCRIPTION
+RRD4D32	|10% discount for orders above $1000 (pre-discount)
+44F4T11	|15% discount for orders above $1500 (pre-discount)
+FF9543D1	|Reduces the docgen price to $8.99 a unit when at least 10 documents are purchased
+YYGWKJD	|Reduces the form price to $89.99 a unit when at least 1 wf is purchased
+
 For simplicity sake, only one promotion code can be applied at a time.
 
  
 
-Requirements:
+#### Requirements:
 We would like you to implement a single checkout page, where you'll be able to select products, insert a promotion code (if any available), and being shown the payable amount.
 
 Since promotion codes come and go, we want the pricing rules to be as flexible as possible so that could be changed in the future with little notice.
 
 Outcomes examples:
- 	 
+ 	``` 
 Products	2x wf
 Promotion:	 
 Total	$399.98
@@ -137,7 +138,8 @@ Total	$1,079.94
 Products	1x wf, 1x form
 Promotion:	YYGWKJD
 Total	$289.98
-Directions:
+```
+##### Directions:
 Feel free to make any assumptions where required to complete the exercise, unless contrary to what is specified in the business rules and/or requirements
 We are not aiming to get a perfect, production ready solution. Only spend enough time to produce a testable and maintainable solution for the requirements given.
 We use Javascript ES6 and ReactJS internally and building your sample with these is the easiest way to show us your relevant skills.
