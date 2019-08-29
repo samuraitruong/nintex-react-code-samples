@@ -102,10 +102,11 @@ Nintex is re-designing their product system to give more flexibility to clients 
 
  
 
-|PRODUCT ID|	PRODUCT NAME|	PRICE
-wf|	Workflow	|$199.99
-docgen|	Document Generation	|$9.99
-form|	Form|	$99.99
+|PRODUCT ID|	PRODUCT NAME|	PRICE|
+| :------------- | :----------: | -----------: |
+|wf|	Workflow	|$199.99|
+|docgen|	Document Generation	|$9.99|
+|form|	Form|	$99.99|
  
 
 Also, we currently have these promotion codes:
