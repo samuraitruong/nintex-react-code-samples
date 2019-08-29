@@ -78,6 +78,7 @@ Are smart component which responsible to get data/ process data then pass to dum
 Container the core service to calculate the discount.  There 3 rules were implemented as separate class and fully unit test, one factory method will return the instance of discount rule and then shopping cart service will calculate using the rule.
 
 **Styles**
+
 As project using bootstrap so not much custom styles that were introduced. there are some style under /src/styles to demo my skill, actually, they are just very little. Please note I using BEM rules to naming class name if you not familiar with it please read more at - https://en.bem.info/methodology/naming-convention/
 
 
@@ -144,10 +145,16 @@ Total	$289.98
 ```
 ##### Directions:
 Feel free to make any assumptions where required to complete the exercise, unless contrary to what is specified in the business rules and/or requirements
+
+
 We are not aiming to get a perfect, production ready solution. Only spend enough time to produce a testable and maintainable solution for the requirements given.
+
 We use Javascript ES6 and ReactJS internally and building your sample with these is the easiest way to show us your relevant skills.
+
 We will be focusing our attention on your front-end engineering skills; thus we will be looking into the quality and structure of your JavaScript. Please build a UI that helps to demonstrate that.
+
 Feel free to mock any back-end components (if any required in your design). We won’t be judging any back-end implementation. Feel free to design the data required how you see fit.
+
 We won’t be judging the aesthetics aspect of the UI. Again, we will be more interested in how you structure your style sheets.
  
 
